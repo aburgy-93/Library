@@ -1,0 +1,331 @@
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+- FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights:
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line heights:
+Default: 1
+Medium: 1.2
+Small: 1.05
+Paragraph default: 1.6
+
+- LETTER SPACING
+-0.5px
+0.75px;
+
+--- 02 COLORS
+
+- Primary: 
+- Tints: 
+- Shades: 
+- Accents: 
+- Greys: 
+#6f6f6f (lightest grey allowed on #fae5d3);
+#555
+#333
+#888
+#767676 (lightest grey on #fff)
+
+--- 03 Imgs: unsplash, uifaces(headshots)
+
+--- 04 Icons:
+
+--- 05 SHADOWS: 
+
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER-RADUIS
+
+Default: 9px
+11px
+
+--- 07 WHITESPACE
+
+- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+:root {
+  font-size: 16px;
+  --main-bg-color: #5e9ec2;
+  --secondary-bg-color: #43ded4;
+  --btn-hover-login: hwb(176 18% 43%);
+  --button-clr: #cbf7ff;
+  --card-bg-clr: #f9f871;
+  --btn-hover-add: #cbf7ff8a;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-size: 62.5%;
+}
+
+.body {
+  /* background: var(--main-bg-color); */
+  display: grid;
+  grid-template-rows: 100px 100px 1fr;
+}
+
+.header {
+  background: var(--secondary-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 500px;
+  box-shadow: 2px 5px 5px rgba(32, 26, 26, 0.2);
+  z-index: 100;
+}
+
+.header button {
+  border: none;
+  border-radius: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 48px;
+  width: 96px;
+}
+
+button {
+  background: var(--button-clr);
+}
+
+.modal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-bg-color);
+}
+
+.modal-btn .add-button {
+  border: none;
+  border-radius: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 50px;
+  width: 150px;
+}
+
+.add-button:hover {
+  cursor: pointer;
+  background: var(--btn-hover-add);
+}
+
+header > button:hover {
+  cursor: pointer;
+  background: var(--btn-hover-login);
+  color: white;
+}
+
+.main {
+  height: 100%;
+  background: var(--main-bg-color);
+}
+
+.main > h1 {
+  font-size: 2.4rem;
+  margin: 0;
+  padding: 1.2rem 3.2rem;
+}
+
+.form-add-button:hover {
+  cursor: pointer;
+}
+
+.books {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+  margin-left: 50px;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.card-book {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px rgba(32, 26, 26, 0.2);
+  border-left: 10px solid rgb(180, 1, 1) !important;
+  max-width: 300px;
+  background-color: rgba(34, 211, 238, 0.3) !important;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.card-book .delete,
+.edit {
+  width: 100px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+.card-book .checkbox {
+  height: 50px;
+}
+
+.book-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  padding-top: 8px;
+  margin-bottom: 0.5rem;
+  /* font-style: oblique; */
+  text-decoration: underline;
+  text-decoration-thickness: 0.15rem;
+}
+
+.book-read {
+  display: flex;
+  align-items: center;
+}
+
+.book-read-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.book-author {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.book-pages {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
+
+/* Modal Window */
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+/* Modal Content */
+.modal-content {
+  margin: 12% auto;
+  border: 1px solid black;
+  border-radius: 1rem;
+  background-color: lightgray;
+  max-width: 22%;
+  min-width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 0rem;
+}
+
+.read-modal {
+  display: flex;
+  align-items: center;
+}
+
+.read-modal > span {
+  margin-right: 0.2rem;
+}
+
+.modal-input-field {
+  padding-bottom: 0.6rem;
+}
+
+.modal-input-field > label {
+  margin-bottom: 0.2rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+label:first-of-type {
+  margin-top: 0;
+}
+
+input {
+  padding: 0.5rem;
+  border: solid 1px #999;
+  border-radius: 0.5rem;
+}
+
+input[type="text"] {
+  width: 15rem;
+}
+
+input[type="number"] {
+  width: 15rem;
+}
+
+.newBook {
+  display: flex;
+}
+
+.newBook > h1 {
+  font-size: 1.6rem;
+}
+
+.modal-read {
+  font-size: 1rem;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Submit button */
+.form-add-button {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  background: var(--secondary-bg-color);
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Close Button */
+
+.close {
+  color: black;
+  font-size: 25px;
+  /* transform: translateX(10rem); */
+
+  padding-left: 20rem;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.read-checked {
+  border-left: 10px solid rgb(18, 157, 0) !important;
+}
+
+.hidden {
+  display: none;
+}
