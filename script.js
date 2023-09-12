@@ -5,19 +5,31 @@ const addBook = document.querySelector(".add-button");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const editBtn = document.querySelector(".edit");
+const editModal = document.querySelector(".edit-modal");
+const editCloseModal = document.querySelector(".close-edit-modal");
+const editLibraryCard = document.querySelector(".edit-form-add-button");
+const editBookTitle = document.querySelector("#edit-book-title");
+const editBookAuthor = document.querySelector("#edit-book-author");
+const editBookPages = document.querySelector("#edit-book-pages");
 
 // Opening and closing the modal
 
 addBook.addEventListener("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
 
   modal.style.display = "block";
 });
 
 closeBtn.addEventListener("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
 
   modal.style.display = "none";
+});
+
+editCloseModal.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  editModal.style.display = "none";
 });
 
 window.addEventListener("click", function (e) {
@@ -93,6 +105,13 @@ function createBookElement(el, content, className) {
   return element;
 }
 
+function createEl(el, img, className) {
+  const element = document.createElement(el);
+  element.src = img;
+  element.setAttribute("class", className);
+  return element;
+}
+
 // Displaying the card
 
 function createReadElement(bookItem, book) {
@@ -125,43 +144,91 @@ function deleteBook(index) {
   saveAndRenderBooks();
 }
 
-// function fillOutEditForm(book) {
-//   modal.style.display = "block";
-//   document.querySelector(".form-title").textContent = "Edit Book";
-//   document.querySelector(".form-add-button").textContent = "Edit";
-//   document.querySelector("#book-title").value = book.title || "";
-//   document.querySelector("#book-author").value = book.author || "";
-//   document.querySelector("#book-pages").value = book.pages || "";
-//   document.querySelector("#book-read").checked = book.read;
-// }
+let libraryCard;
+
+function formModule(index) {
+  libraryCard = myLibrary[index];
+  editModal.style.display = "block";
+}
+
+const clearInputs = function () {
+  editBookTitle.value = " ";
+  editBookAuthor.value = " ";
+  editBookPages.value = " ";
+};
+
+editLibraryCard.addEventListener("click", function (e) {
+  e.preventDefault();
+  libraryCard.title = document.querySelector("#edit-book-title").value;
+  libraryCard.author = document.querySelector("#edit-book-author").value;
+  libraryCard.pages = document.querySelector("#edit-book-pages").value;
+  console.log(libraryCard);
+  saveAndRenderBooks();
+  clearInputs();
+  editModal.style.display = "none";
+});
 
 function createBookItem(book, index) {
   const bookItem = document.createElement("div");
+  const bookDivHeader = document.createElement("div");
+  const bookContentDiv = document.createElement("div");
+  const bookBtnDiv = document.createElement("div");
+  const collapseBtn = document.createElement("div");
+
   bookItem.setAttribute("id", index);
   bookItem.setAttribute("key", index);
   bookItem.setAttribute("class", "card-book");
-  bookItem.appendChild(createBookElement("h1", `${book.title}`, "book-title"));
-  bookItem.appendChild(
+  bookDivHeader.setAttribute("class", "bookDivHeader");
+  bookContentDiv.setAttribute("class", "bookContentDiv");
+  bookBtnDiv.setAttribute("class", "btnDiv");
+  collapseBtn.setAttribute("class", "collapsible-up-btn");
+
+  bookItem.appendChild(bookDivHeader);
+
+  bookDivHeader.appendChild(
+    createBookElement("h1", `${book.title}`, "book-title")
+  );
+  bookDivHeader.appendChild(collapseBtn);
+  collapseBtn.appendChild(
+    createEl("img", "chevron-up-outline.svg", "collapsible-up")
+  );
+
+  bookItem.appendChild(bookContentDiv);
+
+  bookContentDiv.appendChild(
     createBookElement("h1", `Author: ${book.author}`, "book-author")
   );
-  bookItem.appendChild(
+  bookContentDiv.appendChild(
     createBookElement("h1", `Pages: ${book.pages}`, "book-pages")
   );
 
-  bookItem.appendChild(createReadElement(bookItem, book));
-  bookItem.appendChild(createBookElement("button", "Delete", "delete"));
-  bookItem.appendChild(createBookElement("button", "Edit", "edit"));
+  bookContentDiv.appendChild(createReadElement(bookItem, book));
+
+  bookItem.appendChild(bookBtnDiv);
+  bookBtnDiv.appendChild(createBookElement("button", "Delete", "delete"));
+  bookBtnDiv.appendChild(createBookElement("button", "Edit", "edit"));
 
   bookItem.querySelector(".delete").addEventListener("click", () => {
     deleteBook(index);
   });
 
-  // bookItem.querySelector(".edit").addEventListener("click ", () => {
-  //   fillOutEditForm(book);
-  // });
+  bookItem.querySelector(".edit").addEventListener("click", () => {
+    formModule(index);
+  });
+
+  // collapsible cards
+  bookItem
+    .querySelector(".collapsible-up-btn")
+    .addEventListener("click", (e) => {
+      console.log(e.target, index);
+    });
 
   books.insertAdjacentElement("afterbegin", bookItem);
 }
+
+// collapseUpBtn.addEventListener("click", function () {
+//   console.log("clicked");
+// });
 
 function renderBooks() {
   books.textContent = "";
@@ -176,4 +243,3 @@ function saveAndRenderBooks() {
 }
 
 addLocalStorage();
-git;

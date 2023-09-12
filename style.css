@@ -149,23 +149,20 @@ header > button:hover {
 }
 
 .card-book {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto 50px;
   box-shadow: 5px 5px 5px rgba(32, 26, 26, 0.2);
   border-left: 10px solid rgb(180, 1, 1) !important;
-  max-width: 300px;
+  /* max-width: 300px; */
+  max-width: 100%;
   background-color: rgba(34, 211, 238, 0.3) !important;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-.card-book .delete,
-.edit {
-  width: 100px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: none;
+.bookContentDiv > h1,
+.book-read > h1 {
+  margin-left: 0.8rem;
 }
 
 .card-book .checkbox {
@@ -173,18 +170,69 @@ header > button:hover {
 }
 
 .book-title {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 400;
-  padding-top: 8px;
-  margin-bottom: 0.5rem;
-  /* font-style: oblique; */
+  padding: 0rem 0.4rem;
+  margin: 0;
   text-decoration: underline;
   text-decoration-thickness: 0.15rem;
+
+  /* overflow titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
+.bookDivHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* overflow titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collapsible-up {
+  top: 0;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  height: 25px;
+  width: 25px;
+}
+
+.collapsible-up-btn {
+  border: none;
+}
+
+/* .book-title::after {
+  content: "...";
+  position: absolute;
+} */
 
 .book-read {
   display: flex;
   align-items: center;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+}
+
+.delete,
+.edit {
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 0.8rem;
+  /* margin-bottom: 0.8rem; */
+}
+
+.delete {
+  margin-left: 0.8rem;
 }
 
 .book-read-title {
@@ -212,7 +260,8 @@ header > button:hover {
 }
 
 /* Modal Window */
-.modal {
+.modal,
+.edit-modal {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -221,7 +270,8 @@ header > button:hover {
 }
 
 /* Modal Content */
-.modal-content {
+.modal-content,
+.edit-modal-content {
   margin: 12% auto;
   border: 1px solid black;
   border-radius: 1rem;
@@ -245,7 +295,8 @@ header > button:hover {
   margin-right: 0.2rem;
 }
 
-.modal-input-field {
+.modal-input-field,
+.edit-modal-input-field {
   padding-bottom: 0.6rem;
 }
 
@@ -289,14 +340,16 @@ input[type="number"] {
   font-size: 1rem;
 }
 
-.add-book-form {
+.add-book-form,
+.edit-book-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* Submit button */
-.form-add-button {
+.form-add-button,
+.edit-form-add-button {
   padding: 0.5em 1em;
   border: none;
   border-radius: 10px;
@@ -308,7 +361,8 @@ input[type="number"] {
 
 /* Close Button */
 
-.close {
+.close,
+.close-edit-modal {
   color: black;
   font-size: 25px;
   /* transform: translateX(10rem); */
@@ -318,6 +372,12 @@ input[type="number"] {
 
 .close:hover,
 .close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close-edit-modal:hover,
+.close-edit-modal:focus {
   text-decoration: none;
   cursor: pointer;
 }

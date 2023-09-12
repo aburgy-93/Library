@@ -80,6 +80,53 @@
         </div>
       </div>
     </div>
+
+    <div id="edit-modal" class="edit-modal hidden">
+      <div class="edit-modal-content">
+        <ion-icon class="close-edit-modal" name="close"></ion-icon>
+        <div class="newBook">
+          <h1 class="form-title">Edit Book</h1>
+        </div>
+        <div class="edit-modal-form">
+          <form action="" class="edit-book-form">
+            <div class="edit-modal-input-field">
+              <label for="book-title">Title:</label>
+              <input
+                type="text"
+                name="book-title"
+                id="edit-book-title"
+                class="edit-modal-form-input"
+              />
+            </div>
+            <div class="edit-modal-input-field">
+              <label for="book-author">Author:</label>
+              <input
+                type="text"
+                name="book-author"
+                id="edit-book-author"
+                class="edit-modal-form-input"
+              />
+            </div>
+            <div class="edit-modal-input-field">
+              <label for="book-pages">Pages:</label>
+              <input
+                type="number"
+                min="0"
+                name="book-pages"
+                id="edit-book-pages"
+                class="edit-modal-form-input"
+              />
+            </div>
+
+            <div class="submit-edit-modal-form">
+              <button type="submit" class="btn edit-form-add-button">
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
